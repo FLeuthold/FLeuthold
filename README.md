@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @FLeuthold
 - 👀 I’m interested in MVC application architecture
-- 🌱 I’m currently learning WPF MVVM
-- 💞️ I’m looking to collaborate on making a Snake game using WPF MVVM
+- 🌱 I’m currently learning PowerApps
+- 💞️ I’m looking to collaborate on migrating a small ms-Access project to PowerApps
 - 📫 How to reach me babaelow@gmail.com
 
 <!---
