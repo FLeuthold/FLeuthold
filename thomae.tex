@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\begin{document}
+Die thomaesche Funktion (auch "Popcorn-Funktion" genannt) ist ein klassisches Beispiel in der Analysis. Um ihre Riemann-Integrierbarkeit ohne Maßtheorie zu beweisen, nutzen wir das Riemannsche Integrabilitätskriterium.
+
+\section{ Definition der Funktion}
+
+Die thomaesche Funktion $f: [0, 1] \to \mathbb{R}$ ist definiert als: $f(x) = \frac{1}{q}$, wenn $x = \frac{p}{q}$ ein gekürzter Bruch mit $p, q \in \mathbb{N}$ ist (für $x=0$ setzen wir $f(0)=1$). $f(x) = 0$, wenn $x$ irrational ist.
+
+\section{ Das Ziel}
+
+
+Eine Funktion ist auf $[a, b]$ Riemann-integrierbar, wenn für jedes $\epsilon > 0$ eine Partition $P$ existiert, so dass die Differenz zwischen Obersumme $U(f, P)$ und Untersumme $L(f, P)$ kleiner als $\epsilon$ ist:
+
+$$U(f, P) - L(f, P) < \epsilon$$
+
+\section{ Schritt 1: Die Untersumme $L(f, P)$}
+
+
+In jedem noch so kleinen Teilintervall $[x_{i-1}, x_i]$ einer Partition $P$ liegen (aufgrund der Dichtheit der irrationalen Zahlen) stets irrationale Zahlen. Da $f(x) = 0$ für alle irrationalen $x$ gilt, ist das Infimum der Funktionswerte in jedem Intervall:
+
+$$m_i = \inf \{f(x) \mid x \in [x_{i-1}, x_i]\} = 0$$
+
+Daraus folgt für jede beliebige Partition $P$:
+
+$$L(f, P) = \sum_{i=1}^n m_i \Delta x_i = 0$$
+
+\section{ Schritt 2: Die Obersumme $U(f, P)$ kontrollieren}
+
+
+Wir müssen zeigen, dass wir für jedes $\epsilon > 0$ eine Partition finden, bei der die Obersumme $U(f, P) < \epsilon$ wird.Die Kernidee: Es gibt nur endlich viele Stellen, an denen die Funktion "große" Werte annimmt.Sei ein beliebiges $\epsilon > 0$ gegeben.Wir betrachten die Menge $S$ aller Punkte $x \in [0, 1]$, für die $f(x) \geq \frac{\epsilon}{2}$ gilt.Damit $f(x) = \frac{1}{q} \geq \frac{\epsilon}{2}$ gilt, muss $q \leq \frac{2}{\epsilon}$ sein.Da $q$ eine natürliche Zahl ist, gibt es nur endlich viele solcher Nenner $q$.Für jeden Nenner $q$ gibt es nur endlich viele Zähler $p$, so dass $0 \leq \frac{p}{q} \leq 1$.Folglich ist die Menge $S$ endlich. Sei $N$ die Anzahl der Elemente in $S$.
+
+\section{ Schritt 3: Konstruktion der Partition}
+
+
+Wir konstruieren eine Partition $P$, indem wir die $N$ "problematischen" Punkte aus $S$ in sehr kleine Intervalle einschließen.Wir wählen $N$ Intervalle um die Punkte in $S$ mit einer Gesamtlänge von weniger als $\frac{\epsilon}{2}$.In diesen "schlechten" Intervallen ist das Supremum $M_i \leq 1$ (da der maximale Wert der Funktion 1 ist). Ihr Beitrag zur Obersumme ist also:
+
+$$\sum_{schlecht} M_i \Delta x_i \leq 1 \cdot (Gesamtlaenge) < \frac{\epsilon}{2}$$
+
+In allen anderen ("guten") Intervallen liegen keine Punkte aus $S$. Das bedeutet, für alle $x$ in diesen Intervallen gilt $f(x) < \frac{\epsilon}{2}$. Ihr Beitrag zur Obersumme ist:
+
+$$\sum_{gut} M_i \Delta x_i < \frac{\epsilon}{2} \cdot (Restlaenge) \leq \frac{\epsilon}{2} \cdot 1 = \frac{\epsilon}{2}$$
+
+\section{ 6. Fazit}
+
+Addieren wir beide Teile, erhalten wir für die Obersumme:
+
+$$U(f, P) = \sum_{schlecht} M_i \Delta x_i + \sum_{gut} M_i \Delta x_i < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+
+Da $L(f, P) = 0$ und $U(f, P) < \epsilon$ für eine geeignete Partition gilt, ist die thomaesche Funktion Riemann-integrierbar. Das Integral ist:
+
+$$\int_0^1 f(x) \, dx = 0$$
+
+\end{document}
