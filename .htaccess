@@ -1,6 +1,2 @@
-# Fehlerausgabe wie gehabt
-
-php_flag display_errors on
-php_value error_reporting 7
-
-RewriteRule ^autodiscover/autodiscover\.xml$ /autodiscover/autodiscover.php [L]
+RewriteEngine On
+RewriteRule ^autodiscover\.xml$ autodiscover.php [L]
