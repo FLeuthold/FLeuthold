@@ -1,0 +1,6 @@
+3*dr''/dr= 3*d/dr [(GM(r)m/r^2)/m]
+
+=3*d/dr (G*4/3π r^3 * rho/r^2)
+
+=3*d/dr (G*4/3π * rho * r)
+= 4πG rho 
