@@ -46,7 +46,23 @@ Strictly speaking one should absolutely note that $\rho$ is indeed dependant on 
 
 $$\frac{3r'' }{r}= -4\pi G \rho (r)$$
 
-in order to ``further emphasise the utter non-linearity of this already''
+in order to  emphasise the non-linearity of this differential equation. 
+Note that we're really just describing a ball of dust of mass M that's collapsing under it's own gravity here, so you couldn't assume a constant density at all, ie the density increases over time.
+note that we wanna find r(t), so it's actually 
+$$\frac{3r''(t) }{r(t)}= -4\pi G \rho (r(t))$$
+with the derivative respective to t of course. so the density is a doubly nested function.
 
+Note that we could derive the final equation much faster through:
+$$mr'' = - GMm/r^2$$
+$$r'' = -GM/r^2 = -G/r^2 * \rho * 4/3 * \pi r^3$$
+$$3r''/r = ...$$
+
+But here, it's unclear that $3r''/r$ is inherently anything meaningful. With the term ``relative change in Volume'' we can conjure up that this is best described through V''(0)/V(0) wich leads to this expression.
+
+Note also that concerning the term with $r'$ above, even if we don't set $r'(t=0) =0$, we would still end up with this term just ``residing on both sides'' 
+
+$$3 [\frac{r''}{r} + \frac{2*(r')^2}{r^2}]=-4 \pi G  \rho + 3 * \frac{2*(r')^2}{r^2}$$
+
+and you can just subtract $3 * \frac{2*(r')^2}{r^2}$ from both sides and end up with the same end result.
 
 \end{document}
