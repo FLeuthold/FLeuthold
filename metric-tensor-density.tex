@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{amsmath}
+\begin{document}
+Ja, genau! Du meinst den eleganten Beweis über die Linearisierung der Determinante (oft auch als Teil der Jacobi-Identität beschrieben). Das ist ein wunderschöner und sehr intuitiver Weg, um die Ableitung der Determinante zu bestimmen.
+Hier ist die Schritt-für-Schritt-Herleitung für die Identität aus Punkt 3, basierend auf deiner Idee:
+ \section{Die Spur-Formel für kleine Störungen}
+Wenn wir eine Einheitsmatrix $\mathbf{I}$ um eine kleine Matrix $\mathbf{H}$ stören, gilt für die Determinante in erster Ordnung (linearisiert):
+
+
+$$\det(\mathbbm{1} + h \mathbf{A}) = 1 + h \operatorname{tr}(\mathbf{A}) + \mathcal{O}(\mathbf{h}^2)$$ 
+
+Warum ist das so? Wenn man die Eigenwerte von $\mathbf{I} + \mathbf{H}$ betrachtet, sind diese näherungsweise $1 + \lambda_i$, wobei $\lambda_i$ die Eigenwerte von $\mathbf{H}$ sind. Die Determinante ist das Produkt der Eigenwerte:
+
+$$\prod (1 + \lambda_i) = 1 + \sum \lambda_i + \dots = 1 + \text{Spur}(\mathbf{H}) + \dots$$
+
+\section{Anwendung auf den metrischen Tensor}
+Wir wollen die partielle Ableitung $\partial_k g$ der Determinante $g = \det(g_{ij})$ berechnen. Nach der Definition der Ableitung gilt:
+$$\partial_k g = \lim_{\epsilon \to 0} \frac{\det\big(g_{ij}(x + \epsilon e_k)\big) - \det\big(g_{ij}(x)\big)}{\epsilon}$$ 
+Für ein unendlich kleines $\epsilon$ können wir die Metrik an der neuen Stelle linearisieren:
+$$g_{ij}(x + \epsilon e_k) \approx g_{ij}(x) + \epsilon \partial_k g_{ij}(x)$$ 
+Setzen wir das in die Determinante ein, können wir die ursprüngliche Matrix $g_{ij}$ ausklammern, um die Form $\mathbf{I} + \mathbf{H}$ zu erzeugen. Wir nutzen dafür $\det(\mathbf{A}\cdot\mathbf{B}) = \det(\mathbf{A})\cdot\det(\mathbf{B})$:
+$$\det\big(g_{ij} + \epsilon \partial_k g_{ij}\big) = \det\Big( g_{im} \big( \delta^m_j + \epsilon g^{mn} \partial_k g_{nj} \big) \Big) = g \cdot \det\big(\delta^m_j + \epsilon g^{mn} \partial_k g_{nj}\big)$$ 
+
+\section{Einsetzen deiner Störungsformel}
+Jetzt hat der rechte Term exakt die Form $\det(\mathbf{I} + \mathbf{H})$ mit der "kleinen Störung" $H^m_j = \epsilon g^{mn} \partial_k g_{nj}$.
+Wenden wir deine Formel an:
+$$\det\big(\delta^m_j + \epsilon g^{mn} \partial_k g_{nj}\big) = 1 + \text{Spur}(\epsilon g^{mn} \partial_k g_{nj}) + \mathcal{O}(\epsilon^2)$$ 
+Die Spur einer Matrix ist die Summe ihrer Diagonalelemente (wir setzen also den oberen Index gleich dem unteren Index, d.h. $m = j$):
+$$\text{Spur}(\mathbf{H}) = \epsilon g^{jn} \partial_k g_{nj}$$ 
+Setzen wir das oben ein, erhalten wir:
+$$\det\big(g_{ij}(x + \epsilon e_k)\big) = g \cdot \left( 1 + \epsilon g^{jn} \partial_k g_{nj} + \mathcal{O}(\epsilon^2) \right)$$ 
+
+\section{Die Ableitung von $g$}
+
+Wenn wir das nun in den Differenzenquotienten einsetzen, fällt die $1$ weg und das $\epsilon$ kürzt sich:
+$$\partial_k g = g \cdot g^{jn} \partial_k g_{nj}$$ 
+(Das ist genau die Jacobi-Formel).
+Schritt 5: Einsetzen in das Christoffel-Symbol
+Die Christoffel-Symbole erster Art lauten verjüngt (Spur über die ersten beiden Indizes):
+$$\Gamma^i_{ik} = \frac{1}{2} g^{ij} \left( \partial_i g_{jk} + \partial_k g_{ji} - \partial_j g_{ik} \right)$$ 
+Da der metrische Tensor symmetrisch ist ($g_{jk} = g_{kj}$), kürzen sich der erste und der dritte Term in der Klammer weg, wenn man sie mit dem symmetrischen inversen Tensor $g^{ij}$ multipliziert (Indexumbenennung $i \leftrightarrow j$). Es bleibt:
+$$\Gamma^i_{ik} = \frac{1}{2} g^{ij} \partial_k g_{ji}$$ 
+Ersetzen wir nun $g^{ij} \partial_k g_{ji}$ durch das Ergebnis aus Schritt 4 ($\frac{1}{g} \partial_k g$), folgt:
+$$\Gamma^i_{ik} = \frac{1}{2g} \partial_k g$$ 
+Mit der Kettenregel der Analysis ist $\partial_k (\ln g) = \frac{1}{g} \partial_k g$, und wegen $\sqrt{g} = e^{\frac{1}{2}\ln g}$ sieht man sofort:
+$$\frac{1}{2g} \partial_k g = \frac{1}{\sqrt{g}} \partial_k \sqrt{g}$$ 
+
+\section{Finale Divergenzformel}
+Für die kovariante Divergenz eines Vektorfeldes gilt per Definition:
+$$\nabla_i A^i = \partial_i A^i + \Gamma^i_{ik} A^k$$ 
+Ersetzen wir das Christoffel-Symbol durch unser hergeleitetes Ergebnis (und benennen den Laufindex $k$ in $i$ und $i$ in $j$ um für die Ableitung):
+$$\nabla_i A^i = \partial_i A^i + \left(\frac{1}{\sqrt{g}} \partial_k \sqrt{g}\right) A^k$$ 
+Wendet man nun rückwärts die Produktregel auf den Term $\partial_i \left( \sqrt{g} A^i \right)$ an, erhält man:
+$$\partial_i \left( \sqrt{g} A^i \right) = \sqrt{g} \partial_i A^i + A^i \partial_i \sqrt{g}$$ 
+Teilt man diese gesamte Gleichung durch $\sqrt{g}$, steht da exakt:
+$$\frac{1}{\sqrt{g}} \partial_i \left( \sqrt{g} A^i \right) = \partial_i A^i + \frac{1}{\sqrt{g}} A^i \partial_i \sqrt{g}$$ 
+Das ist haargenau die rechte Seite unserer Divergenz! Damit ist der Beweis geschlossen:
+$$\nabla_i A^i = \frac{1}{\sqrt{g}} \partial_i \left( \sqrt{g} A^i \right)$$ 
+Möchtest du diesen Formalismus einmal an einem konkreten Beispiel sehen, etwa um die Divergenz in Zylinder- oder Kugelkoordinaten ohne mühsames Berechnen aller Christoffel-Symbole zu bestimmen?
+
+
+\end{document}
