@@ -6,14 +6,14 @@
 Ja, genau! Du meinst den eleganten Beweis über die Linearisierung der Determinante (oft auch als Teil der Jacobi-Identität beschrieben). Das ist ein wunderschöner und sehr intuitiver Weg, um die Ableitung der Determinante zu bestimmen.
 Hier ist die Schritt-für-Schritt-Herleitung für die Identität aus Punkt 3, basierend auf deiner Idee:
  \section{Die Spur-Formel für kleine Störungen}
-Wenn wir eine Einheitsmatrix $\mathbf{I}$ um eine kleine Matrix $\mathbf{H}$ stören, gilt für die Determinante in erster Ordnung (linearisiert):
+Wenn wir eine Einheitsmatrix $\mathbbm{1}$ um eine kleine Matrix $ h \mathbf{A}$ stören, gilt für die Determinante in erster Ordnung (linearisiert):
 
 
-$$\det(\mathbbm{1} + h \mathbf{A}) = 1 + h \operatorname{tr}(\mathbf{A}) + \mathcal{O}(\mathbf{h}^2)$$ 
+$$\det(\mathbbm{1} + h \mathbf{A}) = 1 + h \operatorname{tr}(\mathbf{A}) + \mathcal{O}(h^2)$$ 
 
-Warum ist das so? Wenn man die Eigenwerte von $\mathbf{I} + \mathbf{H}$ betrachtet, sind diese näherungsweise $1 + \lambda_i$, wobei $\lambda_i$ die Eigenwerte von $\mathbf{H}$ sind. Die Determinante ist das Produkt der Eigenwerte:
+Warum ist das so? Wenn man die Eigenwerte von $\mathbbm{1} + \mathbf{A}$ betrachtet, sind diese näherungsweise $1 + \lambda_i$, wobei $\lambda_i$ die Eigenwerte von $\mathbf{H}$ sind. Die Determinante ist das Produkt der Eigenwerte:
 
-$$\prod (1 + \lambda_i) = 1 + \sum \lambda_i + \dots = 1 + \text{Spur}(\mathbf{H}) + \dots$$
+$$\prod (1 + \lambda_i) = 1 + \sum \lambda_i + \dots = 1 + h \operatorname{tr}(\mathbf{A}) + \dots$$
 
 \section{Anwendung auf den metrischen Tensor}
 Wir wollen die partielle Ableitung $\partial_k g$ der Determinante $g = \det(g_{ij})$ berechnen. Nach der Definition der Ableitung gilt:
@@ -59,6 +59,47 @@ $$\frac{1}{\sqrt{g}} \partial_i \left( \sqrt{g} A^i \right) = \partial_i A^i + \
 Das ist haargenau die rechte Seite unserer Divergenz! Damit ist der Beweis geschlossen:
 $$\nabla_i A^i = \frac{1}{\sqrt{g}} \partial_i \left( \sqrt{g} A^i \right)$$ 
 Möchtest du diesen Formalismus einmal an einem konkreten Beispiel sehen, etwa um die Divergenz in Zylinder- oder Kugelkoordinaten ohne mühsames Berechnen aller Christoffel-Symbole zu bestimmen?
+
+
+\section{Meine Frage}
+
+Er verwendete
+
+
+
+$$\det(\mathbbm{1} + h \mathbf{A}) = 1 + h \operatorname{tr}(\mathbf{A}) + \mathcal{O}(h^2)$$
+
+
+Wobei $h \mathbf{A}$ eine Störung der Einheitsmatrix ist.
+
+\begin{equation}
+\begin{aligned}
+... &=\partial_{\mu} [\det(g_{\cdot \cdot })] \\
+&=\partial_{\mu} [\det(g_{\cdot \cdot }  * \mathbbm{1})] \\
+&=\partial_{\mu} [\det(g_{\cdot \lambda}* (g^{\lambda \nu }(0) g_{\nu \cdot }(0)) )]  \\
+&=\partial_{\mu} [\det((g_{\cdot \lambda} g^{\lambda \nu }(0)) *g_{\nu \cdot }(0) )]  \\
+&=\partial_{\mu} [\det(g_{\cdot \lambda}g^{\lambda \cdot  }(0) ) *\det( g_{\cdot  \cdot }(0) )]  \\
+&=\operatorname{tr}(g_{\cdot \lambda , \mu}g^{\lambda \cdot  }(0) ) * g(0)  \\
+&=g_{\nu \lambda , \mu}g^{\lambda \nu  }(0)  * g(0)  \\
+\end{aligned}
+\end{equation}
+
+Wenn ich aber einfach strikt das verwende bekomme ich folgendes:
+
+\begin{equation}
+\begin{aligned}
+... &=\partial_{\mu} [\det(g_{\cdot \cdot })] \\
+&=\partial_{\mu} [\det(g_{\cdot \cdot }  * \mathbbm{1})] \\
+&=\partial_{\mu} [\det(g_{\cdot \lambda}* (g^{\lambda \nu }(0) g_{\nu \cdot }(0)) )]  \\
+&=\partial_{\mu} [\det((g_{\cdot \lambda} g^{\lambda \nu }(0)) *g_{\nu \cdot }(0) )]  \\
+&=\partial_{\mu} [\det(g_{\cdot \lambda}g^{\lambda \cdot  }(0) ) *\det( g_{\cdot  \cdot }(0) )]  \\
+&=\partial_{\mu} [\det(\mathbbm{1} + h \mathbf{A} ) *\det( g_{\cdot  \cdot }(0) )]  \\
+&=\partial_{\mu} [(1 + h \operatorname{tr}(\mathbf{A}) + \mathcal{O}(h^2) ) *\det( g_{\cdot  \cdot }(0) )]  \\
+&=\operatorname{tr}(g_{\cdot \lambda , \mu}g^{\lambda \cdot  }(0) ) * g(0)  \\
+&=g_{\nu \lambda , \mu}g^{\lambda \nu  }(0)  * g(0)  \\
+\end{aligned}
+\end{equation}
+
 
 
 \end{document}
