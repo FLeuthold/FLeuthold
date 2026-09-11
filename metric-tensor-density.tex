@@ -95,11 +95,111 @@ Wenn ich aber einfach strikt das verwende bekomme ich folgendes:
 &=\partial_{\mu} [\det(g_{\cdot \lambda}g^{\lambda \cdot  }(0) ) *\det( g_{\cdot  \cdot }(0) )]  \\
 &=\partial_{\mu} [\det(\mathbbm{1} + h \mathbf{A} ) *\det( g_{\cdot  \cdot }(0) )]  \\
 &=\partial_{\mu} [(1 + h \operatorname{tr}(\mathbf{A}) + \mathcal{O}(h^2) ) *\det( g_{\cdot  \cdot }(0) )]  \\
-&=\operatorname{tr}(g_{\cdot \lambda , \mu}g^{\lambda \cdot  }(0) ) * g(0)  \\
+&\approx \partial_{\mu} [(1 + h \operatorname{tr}(\mathbf{A}) ) *\det( g_{\cdot  \cdot }(0) )]  \\
+&=\det( g_{\cdot  \cdot }(0) )\partial_{\mu} [(1 + h \operatorname{tr}(\mathbf{A})  ]  \\
+&=g(0) \partial_{\mu} [1 + h \operatorname{tr}(\mathbf{A})   ]  \\
+&=g(0) [\partial_{\mu}(1) + h \partial_{\mu}(\operatorname{tr}(\mathbf{A}) )]   \\
+&=g(0) [0 + h \partial_{\mu}(\operatorname{tr}(\mathbf{A}) )]   \\
+&=g(0) [ h \partial_{\mu}(\operatorname{tr}(\mathbf{A}) )]   \\
+&=g(0) [ h (\operatorname{tr}(\mathbf{\partial_{\mu}A}) )]   \\
+&=g(0) [ h (\operatorname{tr}(\mathbf{A}_{, \mu}) )]   \\
+&=g(0) \operatorname{tr}( h\mathbf{A}_{, \mu})   \\
+&=...??...\\
+&=g(0)  * \operatorname{tr}(g_{\cdot \lambda , \mu}g^{\lambda \cdot  }(0) ) \\
 &=g_{\nu \lambda , \mu}g^{\lambda \nu  }(0)  * g(0)  \\
 \end{aligned}
 \end{equation}
 
+ich kann akzeptieren dass
+
+$$g_{\cdot \lambda}(x)g^{\lambda \cdot  }(0) = \mathbbm{1} + h \mathbf{A}$$
+
+für kleine $x$, weil wenn exakt $x=0$ wäre, wärs ja einfach die einheitsmatrix weil der metrische tensor mal sein inverses gibt die einheitsmatrix (verstehe ich bereits, musst du nicht herleiten)
+
+ich verstehe jedoch überhaupt nicht warum 
+$$g(0) \operatorname{tr}( h\mathbf{A}_{, \mu})  = g(0)  * \operatorname{tr}(g_{\cdot \lambda , \mu}g^{\lambda \cdot  }(0) )$$
+und hiermit vermutlich
+$$ \operatorname{tr}( h\mathbf{A}_{, \mu})  =  \operatorname{tr}(g_{\cdot \lambda , \mu}g^{\lambda \cdot  }(0) )$$
+Also dies bekommt man ja wenn man die terme vor dem fragezeichen und nachher einfach mal gleichsetzt und dann damit rausfindet welche annahmen getroffen würden...
+Also wie kommt man denn von der ersten näherung mit der matrix $A$ darauf dass jetzt das zweite mit der spur gelten soll?
+$$ h\mathbf{A}_{, \mu}  = g_{\cdot \lambda , \mu}g^{\lambda \cdot  }(0) $$
+
+\section{Zweiter Versuch mit Talyor Entwicklung}
+\begin{equation}
+\begin{aligned}
+... &=\partial_{\mu} [\det(g_{\cdot \cdot })] \\
+&=\partial_{\mu} [\det(g_{\cdot \cdot }  * \mathbbm{1})] \\
+&=\partial_{\mu} [\det(g_{\cdot \lambda}* (g^{\lambda \nu }(0) g_{\nu \cdot }(0)) )]  \\
+&=\partial_{\mu} [\det((g_{\cdot \lambda} g^{\lambda \nu }(0)) *g_{\nu \cdot }(0) )]  \\
+&=\partial_{\mu} [\det(g_{\cdot \lambda}g^{\lambda \cdot  }(0) ) *\det( g_{\cdot  \cdot }(0) )]  \\
+&= \det( g_{\cdot  \cdot }(0) )*\partial_{\mu} [\det(g_{\cdot \lambda}g^{\lambda \cdot  }(0) )]  \\
+&= g(0) * \partial_{\mu} [
+\det(g_{\cdot \lambda}
+g^{\lambda \cdot  }(0) )]  \\
+&= g(0) * \partial_{\mu} [      
+(\det(g_{\cdot \lambda}(0) + x^{\mu} g_{\cdot \lambda , \mu} + \mathcal{O}(x^2) )      
+ * g^{\lambda \cdot  }(0) ]  \\
+&= g(0) * \partial_{\mu} [      
+	\det(g_{\cdot \lambda}(0)  * g^{\lambda \cdot  }(0)
+	+ x^{\mu} g_{\cdot \lambda , \mu}  * g^{\lambda \cdot  }(0) 
+	+ \mathcal{O}(x^2)       )]  \\
+&= g(0) * \partial_{\mu} [      
+	\det(\mathbbm{1} ^{\cdot}_{\cdot}
+	+ x^{\mu} g_{\cdot \lambda , \mu}  * g^{\lambda \cdot  }(0) 
+	+ \mathcal{O}(x^2) )      ]  \\
+&= g(0) * \partial_{\mu} [      
+	1
+	+ \operatorname{tr}( g_{\cdot \lambda , \mu}  * g^{\lambda \cdot  }(0) )
+	    ]  \\	    
+&= g(0) * [ \partial_{\mu} (      
+	1)
+	+ \partial_{\mu} (  \operatorname{tr}( g_{\cdot \lambda , \mu}  * g^{\lambda \cdot  }(0) ))
+	     ] \\
+&= g(0) * [0
+	+ \partial_{\mu} (  \operatorname{tr}( g_{\cdot \lambda , \mu}  * g^{\lambda \cdot  }(0) ))
+	     ] \\
+&=g(0)  * \operatorname{tr}(g_{\cdot \lambda , \mu}g^{\lambda \cdot  }(0) ) \\
+&= g(0) * g_{\nu \lambda , \mu}g^{\lambda \nu  }(0) \\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+... &= g(0) \cdot \partial_{\mu} \left[ \det\left( \mathbbm{1}^{\cdot}{\cdot} + x^{\nu} g_{\cdot \lambda , \nu}(0) g^{\lambda \cdot}(0) + \mathcal{O}(x^2) \right) \right] \\
+&= g(0) \cdot \partial_{\mu} \left[ 1 + x^{\nu} \operatorname{tr}\left( g_{\cdot \lambda , \nu}(0) g^{\lambda \cdot}(0) \right) + \mathcal{O}(x^2) \right] \\
+&= g(0) \cdot \left[ \partial_{\mu}(1) + \partial_{\mu}\left( x^{\nu} \operatorname{tr}\left( g_{\cdot \lambda , \nu}(0) g^{\lambda \cdot}(0) \right) \right) + \mathcal{O}(x) \right] \\
+&= g(0) \cdot \left[ 0 + \delta_\mu^\nu \operatorname{tr}\left( g_{\cdot \lambda , \nu}(0) g^{\lambda \cdot}(0) \right) \right] \\
+&= g(0) \cdot \operatorname{tr}\left( g_{\cdot \lambda , \mu}(0) g^{\lambda \cdot}(0) \right) \\
+&= g(0) \cdot g_{\nu \lambda , \mu}(0) g^{\lambda \nu}(0)
+\end{aligned}
+\end{equation}
 
 
+\section{Dritter Versuch}
+\begin{equation}
+\begin{aligned}
+... &=\partial_{\mu} [\det(g_{\cdot \cdot })] \\
+&=\partial_{\mu} [\det(g_{\cdot \cdot }  * \mathbbm{1})] \\
+&=\partial_{\mu} [\det(g_{\cdot \lambda}* (g^{\lambda \nu }(0) g_{\nu \cdot }(0)) )]  \\
+&=\partial_{\mu} [\det((g_{\cdot \lambda} g^{\lambda \nu }(0)) *g_{\nu \cdot }(0) )]  \\
+&=\partial_{\mu} [\det(g_{\cdot \lambda}g^{\lambda \cdot  }(0) ) *\det( g_{\cdot  \cdot }(0) )]  \\
+&= \det( g_{\cdot  \cdot }(0) )*\partial_{\mu} [\det(g_{\cdot \lambda}g^{\lambda \cdot  }(0) )]  \\
+&= g(0) * \partial_{\mu} [
+\det(g_{\cdot \lambda}
+g^{\lambda \cdot  }(0) )]  \\
+&= g(0) * \partial_{\mu} [      
+(\det(g_{\cdot \lambda}(0) + x^{\mu} g_{\cdot \lambda , \mu} + \mathcal{O}(x^2) )      
+ * g^{\lambda \cdot  }(0) ]  \\
+&= g(0) * \partial_{\mu} [      
+	\det(g_{\cdot \lambda}(0)  * g^{\lambda \cdot  }(0)
+	+ x^{\mu} g_{\cdot \lambda , \mu}  * g^{\lambda \cdot  }(0) 
+	+ \mathcal{O}(x^2)       )]  \\
+&= g(0) \cdot \partial_{\mu} \left[ \det\left( \mathbbm{1}^{\cdot}{\cdot} + x^{\nu} g_{\cdot \lambda , \nu}(0) g^{\lambda \cdot}(0) + \mathcal{O}(x^2) \right) \right] \\
+&= g(0) \cdot \partial_{\mu} \left[ 1 + x^{\nu} \operatorname{tr}\left( g_{\cdot \lambda , \nu}(0) g^{\lambda \cdot}(0) \right) + \mathcal{O}(x^2) \right] \\
+&= g(0) \cdot \left[ \partial_{\mu}(1) + \partial_{\mu}\left( x^{\nu} \operatorname{tr}\left( g_{\cdot \lambda , \nu}(0) g^{\lambda \cdot}(0) \right) \right) + \mathcal{O}(x) \right] \\
+&= g(0) \cdot \left[ 0 + \delta_\mu^\nu \operatorname{tr}\left( g_{\cdot \lambda , \nu}(0) g^{\lambda \cdot}(0) \right) \right] \\
+&= g(0) \cdot \operatorname{tr}\left( g_{\cdot \lambda , \mu}(0) g^{\lambda \cdot}(0) \right) \\
+&= g(0) \cdot g_{\nu \lambda , \mu}(0) g^{\lambda \nu}(0)
+\end{aligned}
+\end{equation}
 \end{document}
