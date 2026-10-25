@@ -1,3 +1,4 @@
+
 \documentclass{article}
 \usepackage{amsfonts}
 \usepackage{bbm}
@@ -10,47 +11,53 @@
 \DeclareUnicodeCharacter{03BC}{\ensuremath{\mu}}
 \DeclareUnicodeCharacter{03BD}{\ensuremath{\nu}}
 \DeclareUnicodeCharacter{03C3 }{\ensuremath{\sigma}}
-% 2. Korrekte Definition für \p (ohne Endlosschleife!)
-\newcommand{\p}[1]{(#1)} 
+\DeclareUnicodeCharacter{03B5 }{\ensuremath{\epsilon}}
 
+% 2. Korrekte Definition für \p (ohne Endlosschleife!)
+
+\newcommand{\p}[1]{\left(#1\right)} 
 % 3. Eckige Klammern wie von dir gewünscht
-\newcommand{\kb}[1]{[#1]}
+\newcommand{\kb}[1]{\left[#1\right]}
 
 \newcommand{\tr}{\operatorname{tr}} 
 
 \begin{document}
 Ja, genau! Du meinst den eleganten Beweis über die Linearisierung der Determinante (oft auch als Teil der Jacobi-Identität beschrieben). Das ist ein wunderschöner und sehr intuitiver Weg, um die Ableitung der Determinante zu bestimmen.
 Hier ist die Schritt-für-Schritt-Herleitung für die Identität aus Punkt 3, basierend auf deiner Idee:
+
  \section{Die Spur-Formel für kleine Störungen}
 Wenn wir eine Einheitsmatrix $\mathbbm{1}$ um eine kleine Matrix $ h \mathbf{A}$ stören, gilt für die Determinante in erster Ordnung (linearisiert):
 
 
-$$\det(\mathbbm{1} + h \mathbf{A}) = 1 + h \tr(\mathbf{A}) + \mathcal{O}(h^2)$$ 
+$$\det \p{\mathbbm{1} + h \mathbf{A}} = 1 + h \tr\p{\mathbf{A}} + \mathcal{O}(h^2)$$ 
 
 Warum ist das so? Wenn man die Eigenwerte von $\mathbbm{1} + \mathbf{A}$ betrachtet, sind diese näherungsweise $1 + λ_i$, wobei $λ_i$ die Eigenwerte von $\mathbf{H}$ sind. Die Determinante ist das Produkt der Eigenwerte:
 
-$$\prod (1 + λ_i) = 1 + \sum λ_i + \dots = 1 + h \tr(\mathbf{A}) + \dots$$
+$$\prod (1 + λ_i) = 1 + \sum λ_i + \dots = 1 + h \tr \p{\mathbf{A}} + \dots$$
 
 \section{Anwendung auf den metrischen Tensor}
 Wir wollen die partielle Ableitung $\partial_k g$ der Determinante $g = \det(g_{ij})$ berechnen. Nach der Definition der Ableitung gilt:
-$$\partial_k g = \lim_{\epsilon \to 0} \frac{\det\big(g_{ij}(x + \epsilon e_k)\big) - \det\big(g_{ij}(x)\big)}{\epsilon}$$ 
-Für ein unendlich kleines $\epsilon$ können wir die Metrik an der neuen Stelle linearisieren:
-$$g_{ij}(x + \epsilon e_k) \approx g_{ij}(x) + \epsilon \partial_k g_{ij}(x)$$ 
+$$\partial_k g = \lim_{ε \to 0} \frac{\det\big(g_{ij}(x + ε e_k)\big) - \det\big(g_{ij}(x)\big)}{ε}$$ 
+Für ein unendlich kleines $ε$ können wir die Metrik an der neuen Stelle linearisieren:
+$$g_{ij}(x + ε e_k) \approx g_{ij}(x) + ε \partial_k g_{ij}(x)$$ 
 Setzen wir das in die Determinante ein, können wir die ursprüngliche Matrix $g_{ij}$ ausklammern, um die Form $\mathbf{I} + \mathbf{H}$ zu erzeugen. Wir nutzen dafür $\det(\mathbf{A}·\mathbf{B}) = \det(\mathbf{A})·\det(\mathbf{B})$:
-$$\det\big(g_{ij} + \epsilon \partial_k g_{ij}\big) = \det\Big( g_{im} \big( \delta^m_j + \epsilon g^{mn} \partial_k g_{nj} \big) \Big) = g · \det\big(\delta^m_j + \epsilon g^{mn} \partial_k g_{nj}\big)$$ 
+$$\det\big(g_{ij} + ε \partial_k g_{ij}\big) = \det\Big( g_{im} \big( \delta^m_j + ε g^{mn} \partial_k g_{nj} \big) \Big) = g · \det\big(\delta^m_j + ε g^{mn} \partial_k g_{nj}\big)$$ 
 
 \section{Einsetzen deiner Störungsformel}
-Jetzt hat der rechte Term exakt die Form $\det(\mathbf{I} + \mathbf{H})$ mit der "kleinen Störung" $H^m_j = \epsilon g^{mn} \partial_k g_{nj}$.
+Jetzt hat der rechte Term exakt die Form $\det\p{\mathbf{I} + \mathbf{H}}$ mit der "kleinen Störung" $H^m_j = ε g^{mn} \partial_k g_{nj}$.
 Wenden wir deine Formel an:
-$$\det\big(\delta^m_j + \epsilon g^{mn} \partial_k g_{nj}\big) = 1 + \text{Spur}(\epsilon g^{mn} \partial_k g_{nj}) + \mathcal{O}(\epsilon^2)$$ 
+$$\det\big(\delta^m_j + ε g^{mn} \partial_k g_{nj}\big) = 1 + \text{Spur}(ε g^{mn} \partial_k g_{nj}) + \mathcal{O}(ε^2)$$ 
 Die Spur einer Matrix ist die Summe ihrer Diagonalelemente (wir setzen also den oberen Index gleich dem unteren Index, d.h. $m = j$):
-$$\text{Spur}(\mathbf{H}) = \epsilon g^{jn} \partial_k g_{nj}$$ 
+$$\text{Spur}(\mathbf{H}) = ε g^{jn} \partial_k g_{nj}$$ 
 Setzen wir das oben ein, erhalten wir:
-$$\det\big(g_{ij}(x + \epsilon e_k)\big) = g · \p{ 1 + \epsilon g^{jn} \partial_k g_{nj} + \mathcal{O}(\epsilon^2) }$$ 
+$$\det\big(g_{ij}(x + ε e_k)\big) = g · \p{ 1 + ε g^{jn} \partial_k g_{nj} + \mathcal{O}(ε^2) }$$ 
+
+
+
 
 \section{Die Ableitung von $g$}
 
-Wenn wir das nun in den Differenzenquotienten einsetzen, fällt die $1$ weg und das $\epsilon$ kürzt sich:
+Wenn wir das nun in den Differenzenquotienten einsetzen, fällt die $1$ weg und das $ε$ kürzt sich:
 $$\partial_k g = g · g^{jn} \partial_k g_{nj}$$ 
 (Das ist genau die Jacobi-Formel).
 Schritt 5: Einsetzen in das Christoffel-Symbol
@@ -76,6 +83,49 @@ Das ist haargenau die rechte Seite unserer Divergenz! Damit ist der Beweis gesch
 $$\nabla_i A^i = \frac{1}{\sqrt{g}} \partial_i \p{ \sqrt{g} A^i }$$ 
 Möchtest du diesen Formalismus einmal an einem konkreten Beispiel sehen, etwa um die Divergenz in Zylinder- oder Kugelkoordinaten ohne mühsames Berechnen aller Christoffel-Symbole zu bestimmen?
 
+%begin fehlerzone
+
+
+\begin{equation}
+\begin{aligned}
+... &=\partial_{μ} \p{\det\p{g_{· · }}} \\
+&=\partial_{μ} \p{\det\p{g_{· · }  · \mathbbm{1}}} \\
+&=\partial_{μ} \p{\det\p{g_{· λ}· \p{g^{λ ν }(0) g_{ν · }(0)} }}  \\
+&=\partial_{μ} \p{\det\p{\p{g_{· λ} g^{λ ν }(0)} · g_{ν · }(0) }}  \\
+&=\partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) } · \det\p{ g_{·  · }(0) }}  \\
+&=\partial_{μ} \p{\det\p{\mathbbm{1} + h \mathbf{A} } · \det\p{ g_{·  · }(0) }}  \\
+&=\partial_{μ} \p{\p{1 + h \tr\p{\mathbf{A}}+ \mathcal{O}\p{h^2} } · \det \p{g_{·  · }(0) }}  \\
+&\approx \partial_{μ} \p{\p{1 + h \tr\p{\mathbf{A}} } · \det\p{g_{·  · }(0)}}  \\
+%&=\det \p{ g_{·  · }(0) } \partial_{μ} \p{ 1 + h \tr \p{\mathbf{A}} }  \\
+&=\det \p{ g_{·  · }(0) } \partial_{μ} \p{ 1 + h \tr \p{\mathbf{A}} }  \\
+&=g(0) \partial_{μ} \p{1 + h \tr\p{\mathbf{A}}   }  \\
+&=g(0) \p{\partial_{μ}\p{1} + h \partial_{μ}\p{\tr\p{\mathbf{A}}}}   \\
+&=g(0) \p{0 + h \partial_{μ}\p{\tr\p{\mathbf{A}}}}   \\
+&=g(0) \p{ h \partial_{μ}\p{\tr\p{\mathbf{A}}}}   \\
+&=g(0) \p{ h \p{\tr\p{\mathbf{\partial_{μ}A}}}}   \\
+&=g(0) \p{ h \p{\tr\p{\mathbf{A}_{, μ}}}}   \\
+&=g(0) \tr\p{ h\mathbf{A}_{, μ}}   \\
+&=...??...\\
+&=g(0)  · \tr\p{g_{· λ , μ}g^{λ ·  }(0) } \\
+&=g_{ν λ , μ}g^{λ ν  }(0)  · g(0)  \\
+\end{aligned}
+\end{equation}
+
+ich kann akzeptieren dass
+
+$$g_{· λ}\p{x}g^{λ ·  }(0) = \mathbbm{1} + h \mathbf{A}$$
+
+für kleine $x$, weil wenn exakt $x=0$ wäre, wärs ja einfach die einheitsmatrix weil der metrische tensor mal sein inverses gibt die einheitsmatrix (verstehe ich bereits, musst du nicht herleiten)
+
+ich verstehe jedoch überhaupt nicht warum 
+$$g(0) \tr\p{ h\mathbf{A}_{, μ}}  = g(0)  * \tr\p{g_{· λ , μ}g^{λ ·  }(0)}$$
+und hiermit vermutlich
+$$ \tr\p{ h\mathbf{A}_{, μ}} =  \tr\p{g_{· λ , μ}g^{λ ·  }(0) }$$
+Also dies bekommt man ja wenn man die terme vor dem fragezeichen und nachher einfach mal gleichsetzt und dann damit rausfindet welche annahmen getroffen würden...
+Also wie kommt man denn von der ersten näherung mit der matrix $A$ darauf dass jetzt das zweite mit der spur gelten soll?
+$$ h\mathbf{A}_{, μ}  = g_{· λ , μ}g^{λ ·  }(0) $$
+
+%end fehlerzone
 
 \section{Meine Frage}
 
@@ -83,62 +133,23 @@ Er verwendete
 
 
 
-$$\det(\mathbbm{1} + h \mathbf{A}) = 1 + h \tr(\mathbf{A}) + \mathcal{O}(h^2)$$
+$$\det\p{\mathbbm{1} + h \mathbf{A}} = 1 + h \tr\p{\mathbf{A}} + \mathcal{O}\p{h^2}$$
 
 
 Wobei $h \mathbf{A}$ eine Störung der Einheitsmatrix ist.
 
 \begin{equation}
 \begin{aligned}
-... &=\partial_{μ} \p{\det(g_{· · })} \\
-&=\partial_{μ} \p{\det(g_{· · }  * \mathbbm{1})} \\
-&=\partial_{μ} \p{\det(g_{· λ}* (g^{λ ν }(0) g_{ν · }(0)) )}  \\
-&=\partial_{μ} \p{\det((g_{· λ} g^{λ ν }(0)) *g_{ν · }(0) )}  \\
-&=\partial_{μ} \p{\det(g_{· λ}g^{λ ·  }(0) ) *\det( g_{·  · }(0) )}  \\
-&=\tr(g_{· λ , μ}g^{λ ·  }(0) ) * g(0)  \\
-&=g_{ν λ , μ}g^{λ ν  }(0)  * g(0)  \\
+... &=\partial_{μ} \p{\det\p{g_{· · }}} \\
+&=\partial_{μ} \p{\det\p{g_{· · } · \mathbbm{1}}} \\
+&=\partial_{μ} \p{\det\p{g_{· λ} · \p{g^{λ ν }(0) g_{ν · }(0)} }}  \\
+&=\partial_{μ} \p{\det\p{\p{g_{· λ} g^{λ ν }(0)} · g_{ν · }(0) }}  \\
+&=\partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) } · \det\p{ g_{·  · }(0) }}  \\
+&=\tr\p{g_{· λ , μ}g^{λ ·  }(0) } · g(0)  \\
+&=g_{ν λ , μ}g^{λ ν  }(0)  · g(0)  \\
 \end{aligned}
 \end{equation}
 
-Wenn ich aber einfach strikt das verwende bekomme ich folgendes:
-
-\begin{equation}
-\begin{aligned}
-... &=\partial_{μ} \p{\det(g_{· · })} \\
-&=\partial_{μ} \p{\det(g_{· · }  * \mathbbm{1})} \\
-&=\partial_{μ} \p{\det(g_{· λ}* (g^{λ ν }(0) g_{ν · }(0)) )}  \\
-&=\partial_{μ} \p{\det((g_{· λ} g^{λ ν }(0)) *g_{ν · }(0) )}  \\
-&=\partial_{μ} \p{\det(g_{· λ}g^{λ ·  }(0) ) *\det( g_{·  · }(0) )}  \\
-&=\partial_{μ} \p{\det(\mathbbm{1} + h \mathbf{A} ) *\det( g_{·  · }(0) )}  \\
-&=\partial_{μ} \p{(1 + h \tr(\mathbf{A}) + \mathcal{O}(h^2) ) *\det( g_{·  · }(0) )}  \\
-&\approx \partial_{μ} \p{(1 + h \tr(\mathbf{A}) ) *\det( g_{·  · }(0) )}  \\
-&=\det( g_{·  · }(0) )\partial_{μ} \p{(1 + h \tr(\mathbf{A})  }  \\
-&=g(0) \partial_{μ} \p{1 + h \tr(\mathbf{A})   }  \\
-&=g(0) \p{\partial_{μ}(1) + h \partial_{μ}(\tr(\mathbf{A}) )}   \\
-&=g(0) \p{0 + h \partial_{μ}(\tr(\mathbf{A}) )}   \\
-&=g(0) \p{ h \partial_{μ}(\tr(\mathbf{A}) )}   \\
-&=g(0) \p{ h (\tr(\mathbf{\partial_{μ}A}) )}   \\
-&=g(0) \p{ h (\tr(\mathbf{A}_{, μ}) )}   \\
-&=g(0) \tr( h\mathbf{A}_{, μ})   \\
-&=...??...\\
-&=g(0)  * \tr(g_{· λ , μ}g^{λ ·  }(0) ) \\
-&=g_{ν λ , μ}g^{λ ν  }(0)  * g(0)  \\
-\end{aligned}
-\end{equation}
-
-ich kann akzeptieren dass
-
-$$g_{· λ}(x)g^{λ ·  }(0) = \mathbbm{1} + h \mathbf{A}$$
-
-für kleine $x$, weil wenn exakt $x=0$ wäre, wärs ja einfach die einheitsmatrix weil der metrische tensor mal sein inverses gibt die einheitsmatrix (verstehe ich bereits, musst du nicht herleiten)
-
-ich verstehe jedoch überhaupt nicht warum 
-$$g(0) \tr( h\mathbf{A}_{, μ})  = g(0)  * \tr(g_{· λ , μ}g^{λ ·  }(0) )$$
-und hiermit vermutlich
-$$ \tr( h\mathbf{A}_{, μ})  =  \tr(g_{· λ , μ}g^{λ ·  }(0) )$$
-Also dies bekommt man ja wenn man die terme vor dem fragezeichen und nachher einfach mal gleichsetzt und dann damit rausfindet welche annahmen getroffen würden...
-Also wie kommt man denn von der ersten näherung mit der matrix $A$ darauf dass jetzt das zweite mit der spur gelten soll?
-$$ h\mathbf{A}_{, μ}  = g_{· λ , μ}g^{λ ·  }(0) $$
 
 \section{Zweiter Versuch mit Talyor Entwicklung}
 
@@ -146,25 +157,25 @@ $$ h\mathbf{A}_{, μ}  = g_{· λ , μ}g^{λ ·  }(0) $$
 &= \partial_{μ} \p{ \det \p{ g_{ · · }}}  \\
 &= \partial_{μ}\p{ \det \p{ g_{ · · } · \mathbbm{1}}} \\
 &= \partial_{μ} \p{ \det \p{ g_{ · λ} · \p{ g^{λ ν }(0) g_{ν · }(0) } }}  \\
-&= \partial_{μ} \p{  \det((g_{· λ} g^{λ ν }(0)) · g_{ν · }(0) ) } \\
-&= \partial_{μ} \p{ \det(g_{· λ}g^{λ ·  }(0) ) ·\det( g_{·  · }(0) ) }  \\
-&= \det( g_{·  · }(0) )·\partial_{μ} \p{ \det(g_{· λ}g^{λ ·  }(0) ) } \\
-&= g(0) · \partial_{μ} \p{\det(g_{ · λ}g^{λ ·  }(0) )}  \\
-&= g(0) · \partial_{μ} \p{  (\det(g_{· λ}(0) + x^{μ} g_{· λ , μ} + \mathcal{O}(x^2) ) · g^{λ ·  }(0) }  \\
-&= g(0) · \partial_{μ} \p{  \det(g_{· λ}(0)  · g^{λ ·  }(0) + x^{μ} g_{· λ , μ}  · g^{λ ·  }(0) + \mathcal{O}(x^2))}  \\
-&= g(0) · \partial_{μ} \p{ \det(\mathbbm{1} ^{·}_{·}+ x^{μ} g_{· λ , μ}  · g^{λ ·  }(0) + \mathcal{O}(x^2) ) }  \\
-&= g(0) · \partial_{μ} \p{ 1 + \tr( g_{· λ , μ}  · g^{λ ·  }(0) )}  \\	    
-&= g(0) · \p{ \partial_{μ} (1) + \partial_{μ} (  \tr( g_{· λ , μ}  · g^{λ ·  }(0) ))} \\
-&= g(0) · \p{ 0 + \partial_{μ} (  \tr( g_{· λ , μ} · g^{λ ·  }(0) ))} \\
-&= g(0)  · \tr(g_{· λ , μ}g^{λ ·  }(0) ) \\
+&= \partial_{μ} \p{  \det\p{\p{g_{· λ} g^{λ ν }(0)} · g_{ν · }(0) } } \\
+&= \partial_{μ} \p{ \det\p{g_{· λ}g^{λ ·  }(0) } ·\det\p{ g_{·  · }(0) } }  \\
+&= \det\p{ g_{·  · }(0) }·\partial_{μ} \p{ \det\p{g_{· λ}g^{λ ·  }(0) } } \\
+&= g(0) · \partial_{μ} \p{\det\p{g_{ · λ}g^{λ ·  }(0) }}  \\
+&= g(0) · \partial_{μ} \p{  \p{\det\p{g_{· λ}(0) + x^{μ} g_{· λ , μ} + \mathcal{O}\p{x^2} } · g^{λ ·  }(0) } } \\
+&= g(0) · \partial_{μ} \p{  \det\p{g_{· λ}(0)  · g^{λ ·  }(0) + x^{μ} g_{· λ , μ}  · g^{λ ·  }(0) + \mathcal{O}\p{x^2}}}  \\
+&= g(0) · \partial_{μ} \p{ \det\p{\mathbbm{1} ^{·}_{·}+ x^{μ} g_{· λ , μ}  · g^{λ ·  }(0) + \mathcal{O}\p{x^2} } }  \\
+&= g(0) · \partial_{μ} \p{ 1 + \tr\p{ g_{· λ , μ}  · g^{λ ·  }(0) }}  \\	    
+&= g(0) · \p{ \partial_{μ} \p{1} + \partial_{μ} \p{  \tr\p{ g_{· λ , μ}  · g^{λ ·  }(0) }}} \\
+&= g(0) · \p{ 0 + \partial_{μ} \p{  \tr\p{ g_{· λ , μ} · g^{λ ·  }(0) }}} \\
+&= g(0)  · \tr\p{g_{· λ , μ}g^{λ ·  }(0) } \\
 &= g(0) · g_{ν λ , μ} g^{λ ν }(0) \\
 \end{align}
 
 \begin{equation}
 \begin{aligned}
-... &= g(0) · \partial_{μ}\p{ \det\p{ \mathbbm{1}^{·}{·} + x^{ν} g_{· λ , ν}(0) g^{λ ·}(0) + \mathcal{O}(x^2) } } \\
-&= g(0) · \partial_{μ} \p{ 1 + x^{ν} \tr\p{ g_{· λ , ν}(0) g^{λ ·}(0) } + \mathcal{O}(x^2) } \\
-&= g(0) · \p{ \partial_{μ}(1) + \partial_{μ}\p{ x^{ν} \tr\p{ g_{· λ , ν}(0) g^{λ ·}(0) } } + \mathcal{O}(x) } \\
+... &= g(0) · \partial_{μ}\p{ \det\p{ \mathbbm{1} ^{·}_{·} + x^{ν} g_{· λ , ν}(0) g^{λ ·}(0) + \mathcal{O}\p{x^2} } } \\
+&= g(0) · \partial_{μ} \p{ 1 + x^{ν} \tr\p{ g_{· λ , ν}(0) g^{λ ·}(0) } + \mathcal{O}\p{x^2} } \\
+&= g(0) · \p{ \partial_{μ}\p{1} + \partial_{μ}\p{ x^{ν} \tr\p{ g_{· λ , ν}(0) g^{λ ·}(0) } } + \mathcal{O}\p{x} } \\
 &= g(0) · \p{ 0 + \delta_μ^ν \tr\p{ g_{· λ , ν}(0) g^{λ ·}(0) } } \\
 &= g(0) · \tr\p{ g_{· λ , μ}(0) g^{λ ·}(0) } \\
 &= g(0) · g_{ν λ , μ}(0) g^{λ ν}(0)
@@ -175,18 +186,18 @@ $$ h\mathbf{A}_{, μ}  = g_{· λ , μ}g^{λ ·  }(0) $$
 \section{Dritter Versuch}
 \begin{equation}
 \begin{aligned}
-... &=\partial_{μ} \p{\det(g_{· · })} \\
-&=\partial_{μ} \p{\det(g_{· · }  * \mathbbm{1})} \\
-&=\partial_{μ} \p{\det(g_{· λ}* (g^{λ ν }(0) g_{ν · }(0)) )}  \\
-&=\partial_{μ} \p{\det((g_{· λ} g^{λ ν }(0)) *g_{ν · }(0) )}  \\
-&=\partial_{μ} \p{\det(g_{· λ}g^{λ ·  }(0) ) *\det( g_{·  · }(0) )}  \\
-&= \det( g_{·  · }(0) )*\partial_{μ} \p{\det(g_{· λ}g^{λ ·  }(0) )}  \\
-&= g(0) * \partial_{μ} \p{ \det(g_{· λ} g^{λ ·  }(0) )}  \\
-&= g(0) * \partial_{μ} \p{  (\det(g_{· λ}(0) + x^{σ} g_{· λ , σ} + \mathcal{O}(x^2) )   * g^{λ ·  }(0) }  \\
-&= g(0) * \partial_{μ} \p{ \det(g_{· λ}(0)  * g^{λ ·  }(0) + x^{σ} g_{· λ , σ}  * g^{λ ·  }(0)  + \mathcal{O}(x^2)       )}  \\
-&= g(0) · \partial_{μ} \p{ \det\p{ \mathbbm{1}^{·}{·} + x^{σ} g_{· λ , σ}(0) g^{λ ·}(0) + \mathcal{O}(x^2) } } \\
-&= g(0) · \partial_{μ} \p{ 1 + x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } + \mathcal{O}(x^2) } \\
-&= g(0) · \p{ \partial_{μ}(1) + \partial_{μ}\p{ x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } } + \mathcal{O}(x) } \\
+... &=\partial_{μ} \p{\det\p{g_{· · }}} \\
+&=\partial_{μ} \p{\det\p{g_{· · }  * \mathbbm{1}}} \\
+&=\partial_{μ} \p{\det\p{g_{· λ}* \p{g^{λ ν }(0) g_{ν · }(0)} }}  \\
+&=\partial_{μ} \p{\det\p{\p{g_{· λ} g^{λ ν }(0)} *g_{ν · }(0) }}  \\
+&=\partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) } *\det\p{ g_{·  · }(0) }}  \\
+&= \det\p{ g_{·  · }(0) }*\partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) }}  \\
+&= g(0) * \partial_{μ} \p{ \det\p{g_{· λ} g^{λ ·  }(0) }}  \\
+&= g(0) * \partial_{μ} \p{  \p{\det\p{g_{· λ}(0) + x^{σ} g_{· λ , σ} + \mathcal{O}\p{x^2} }   * g^{λ ·  }(0) }  }\\
+&= g(0) * \partial_{μ} \p{ \det\p{g_{· λ}(0)  * g^{λ ·  }(0) + x^{σ} g_{· λ , σ}  * g^{λ ·  }(0)  + \mathcal{O}\p{x^2}       }}  \\
+&= g(0) · \partial_{μ} \p{ \det\p{ \mathbbm{1} ^{·}_{·}+ x^{σ} g_{· λ , σ}(0) g^{λ ·}(0) + \mathcal{O}\p{x^2} } } \\
+&= g(0) · \partial_{μ} \p{ 1 + x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } + \mathcal{O}\p{x^2} } \\
+&= g(0) · \p{ \partial_{μ}\p{1} + \partial_{μ}\p{ x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } } + \mathcal{O}\p{x} } \\
 &= g(0) · \p{ 0 + \delta_μ^σ \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } } \\
 &= g(0) · \tr\p{ g_{· λ , μ}(0) g^{λ ·}(0) } \\
 &= g(0) · g_{ν λ , μ}(0) g^{λ ν}(0)
@@ -197,18 +208,18 @@ $$ h\mathbf{A}_{, μ}  = g_{· λ , μ}g^{λ ·  }(0) $$
 
 \begin{align}
 ... &=\partial_{μ} \p{g }\\
-&=\partial_{μ} \p{\det(g_{· · })} \\
-&=\partial_{μ} \p{\det(g_{· · }  · \mathbbm{1})} \\
-&=\partial_{μ} \p{\det(g_{· λ}· (g^{λ ν }(0) g_{ν · }(0)) )}  \\
-&=\partial_{μ} \p{\det((g_{· λ} g^{λ ν }(0)) · g_{ν · }(0) )}  \\
-&=\partial_{μ} \p{\det(g_{· λ}g^{λ ·  }(0) ) · \det( g_{·  · }(0) )}  \\
-&= \det( g_{·  · }(0) )· \partial_{μ} \p{\det(g_{· λ}g^{λ ·  }(0) )} \\
-&= g(0) · \partial_{μ} \p{\det(g_{· λ}g^{λ ·  }(0) )} \\
-&= g(0) · \partial_{μ} \p{      (\det(g_{· λ}(0) + x^{σ} g_{· λ , σ} + \mathcal{O}(x^2) ) · g^{λ ·  }(0) }  \\
-&= g(0) · \partial_{μ} \p{ \det(g_{· λ}(0)  · g^{λ ·  }(0) + x^{σ} g_{· λ , σ}  · g^{λ ·  }(0) + \mathcal{O}(x^2)       )} \\
-&= g(0) · \partial_{μ} \p{ \det\p{ \mathbbm{1}^{·}{·} + x^{σ} g_{· λ , σ}(0) g^{λ ·}(0) + \mathcal{O}(x^2) } } \\
-&= g(0) · \partial_{μ} \p{ 1 + x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } + \mathcal{O}(x^2) } \\
-&= g(0) · \p{ \partial_{μ}(1) + \partial_{μ}\p{ x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } } + \mathcal{O}(x) } \\
+&=\partial_{μ} \p{\det\p{g_{· · }}} \\
+&=\partial_{μ} \p{\det\p{g_{· · }  · \mathbbm{1}}} \\
+&=\partial_{μ} \p{\det\p{g_{· λ}· \p{g^{λ ν }(0) g_{ν · }(0)} }}  \\
+&=\partial_{μ} \p{\det\p{\p{g_{· λ} g^{λ ν }(0)} · g_{ν · }(0) }}  \\
+&=\partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) } · \det\p{ g_{·  · }(0) }}  \\
+&= \det\p{ g_{·  · }(0) }· \partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) }} \\
+&= g(0) · \partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) }} \\
+&= g(0) · \partial_{μ} \p{      \p{\det\p{g_{· λ}(0) + x^{σ} g_{· λ , σ} + \mathcal{O}\p{x^2} } · g^{λ ·  }(0) } } \\
+&= g(0) · \partial_{μ} \p{ \det\p{g_{· λ}(0)  · g^{λ ·  }(0) + x^{σ} g_{· λ , σ}  · g^{λ ·  }(0) + \mathcal{O}\p{x^2}       }} \\
+&= g(0) · \partial_{μ} \p{ \det\p{ \mathbbm{1} ^{·}_{·} + x^{σ} g_{· λ , σ}(0) g^{λ ·}(0) + \mathcal{O}\p{x^2} } } \\
+&= g(0) · \partial_{μ} \p{ 1 + x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } + \mathcal{O}\p{x^2} } \\
+&= g(0) · \p{ \partial_{μ}\p{1} + \partial_{μ}\p{ x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } } + \mathcal{O}\p{x} } \\
 &= g(0) · \p{ 0 + \delta_μ^σ \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } } \\
 &= g(0) · \tr\p{ g_{· λ , μ}(0) g^{λ ·}(0) } \\
 &= g(0) · g_{ν λ , μ}(0) g^{λ ν}(0)
@@ -220,18 +231,18 @@ $$ h\mathbf{A}_{, μ}  = g_{· λ , μ}g^{λ ·  }(0) $$
 \begin{align}
 ... &=\partial_{μ} \p{g }\\
 &=\partial_{μ} \p{
-\det(g_{· · })} \\
-&=\partial_{μ} \p{\det(g_{· · }  · \mathbbm{1})} \\
-&=\partial_{μ} \p{\det(g_{· λ}· (g^{λ ν }(0) g_{ν · }(0)) )}  \\
-&=\partial_{μ} \p{\det((g_{· λ} g^{λ ν }(0)) · g_{ν · }(0) )}  \\
-&=\partial_{μ} \p{\det(g_{· λ}g^{λ ·  }(0) ) · \det( g_{·  · }(0) )}  \\
-&= \det( g_{·  · }(0) )· \partial_{μ} \p{\det(g_{· λ}g^{λ ·  }(0) )} \\
-&= g(0) · \partial_{μ} \p{ \det(g_{· λ} g^{λ ·  }(0) )} \\
-&= g(0) · \partial_{μ} \p{ (\det(g_{· λ}(0) + x^{σ} g_{· λ , σ} + \mathcal{O}(x^2) ) · g^{λ ·  }(0) }  \\
-&= g(0) · \partial_{μ} \p{  \det(g_{· λ}(0)  · g^{λ ·  }(0) + x^{σ} g_{· λ , σ}  · g^{λ ·  }(0) + \mathcal{O}(x^2))}\\
-&= g(0) · \partial_{μ} \p{ \det\p{ \mathbbm{1}^{·}{·} + x^{σ} g_{· λ , σ}(0) g^{λ ·}(0) + \mathcal{O}(x^2) } } \\
-&= g(0) · \partial_{μ} \p{ 1 + x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } + \mathcal{O}(x^2) } \\
-&= g(0) · \p{ \partial_{μ}(1) + \partial_{μ}\p{ x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } } + \mathcal{O}(x) } \\
+\det\p{g_{· · }}} \\
+&=\partial_{μ} \p{\det\p{g_{· · }  · \mathbbm{1}}} \\
+&=\partial_{μ} \p{\det\p{g_{· λ}· \p{g^{λ ν }(0) g_{ν · }(0)} }}  \\
+&=\partial_{μ} \p{\det\p{\p{g_{· λ} g^{λ ν }(0)} · g_{ν · }(0) }}  \\
+&=\partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) } · \det\p{ g_{·  · }(0) }}  \\
+&= \det\p{ g_{·  · }(0) }· \partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) }} \\
+&= g(0) · \partial_{μ} \p{ \det\p{g_{· λ} g^{λ ·  }(0) }} \\
+&= g(0) · \partial_{μ} \p{ \p{\det\p{g_{· λ}(0) + x^{σ} g_{· λ , σ} + \mathcal{O}\p{x^2} } · g^{λ ·  }(0) }}  \\
+&= g(0) · \partial_{μ} \p{  \det\p{g_{· λ}(0)  · g^{λ ·  }(0) + x^{σ} g_{· λ , σ}  · g^{λ ·  }(0) + \mathcal{O}\p{x^2}}}\\
+&= g(0) · \partial_{μ} \p{ \det\p{ \mathbbm{1} ^{·}_{·} + x^{σ} g_{· λ , σ}(0) g^{λ ·}(0) + \mathcal{O}\p{x^2} } } \\
+&= g(0) · \partial_{μ} \p{ 1 + x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } + \mathcal{O}\p{x^2} } \\
+&= g(0) · \p{ \partial_{μ}\p{1} + \partial_{μ}\p{ x^{σ} \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } } + \mathcal{O}\p{x} } \\
 &= g(0) · \p{ 0 + \delta_μ^σ \tr\p{ g_{· λ , σ}(0) g^{λ ·}(0) } } \\
 &= g(0) · \tr\p{ g_{· λ , μ}(0) g^{λ ·}(0) } \\
 &= g(0) · g_{ν λ , μ}(0) g^{λ ν}(0)
