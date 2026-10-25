@@ -82,7 +82,28 @@ $$\frac{1}{\sqrt{g}} \partial_i \p{ \sqrt{g} A^i } = \partial_i A^i + \frac{1}{\
 Das ist haargenau die rechte Seite unserer Divergenz! Damit ist der Beweis geschlossen:
 $$\nabla_i A^i = \frac{1}{\sqrt{g}} \partial_i \p{ \sqrt{g} A^i }$$ 
 Möchtest du diesen Formalismus einmal an einem konkreten Beispiel sehen, etwa um die Divergenz in Zylinder- oder Kugelkoordinaten ohne mühsames Berechnen aller Christoffel-Symbole zu bestimmen?
+\section{Meine Frage}
 
+Er verwendete
+
+
+
+$$\det\p{\mathbbm{1} + h \mathbf{A}} = 1 + h \tr\p{\mathbf{A}} + \mathcal{O}\p{h^2}$$
+
+
+Wobei $h \mathbf{A}$ eine Störung der Einheitsmatrix ist.
+
+\begin{equation}
+\begin{aligned}
+... &=\partial_{μ} \p{\det\p{g_{· · }}} \\
+&=\partial_{μ} \p{\det\p{g_{· · } · \mathbbm{1}}} \\
+&=\partial_{μ} \p{\det\p{g_{· λ} · \p{g^{λ ν }(0) g_{ν · }(0)} }}  \\
+&=\partial_{μ} \p{\det\p{\p{g_{· λ} g^{λ ν }(0)} · g_{ν · }(0) }}  \\
+&=\partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) } · \det\p{ g_{·  · }(0) }}  \\
+&=\tr\p{g_{· λ , μ}g^{λ ·  }(0) } · g(0)  \\
+&=g_{ν λ , μ}g^{λ ν  }(0)  · g(0)  \\
+\end{aligned}
+\end{equation}
 %begin fehlerzone
 
 
@@ -127,28 +148,7 @@ $$ h\mathbf{A}_{, μ}  = g_{· λ , μ}g^{λ ·  }(0) $$
 
 %end fehlerzone
 
-\section{Meine Frage}
 
-Er verwendete
-
-
-
-$$\det\p{\mathbbm{1} + h \mathbf{A}} = 1 + h \tr\p{\mathbf{A}} + \mathcal{O}\p{h^2}$$
-
-
-Wobei $h \mathbf{A}$ eine Störung der Einheitsmatrix ist.
-
-\begin{equation}
-\begin{aligned}
-... &=\partial_{μ} \p{\det\p{g_{· · }}} \\
-&=\partial_{μ} \p{\det\p{g_{· · } · \mathbbm{1}}} \\
-&=\partial_{μ} \p{\det\p{g_{· λ} · \p{g^{λ ν }(0) g_{ν · }(0)} }}  \\
-&=\partial_{μ} \p{\det\p{\p{g_{· λ} g^{λ ν }(0)} · g_{ν · }(0) }}  \\
-&=\partial_{μ} \p{\det\p{g_{· λ}g^{λ ·  }(0) } · \det\p{ g_{·  · }(0) }}  \\
-&=\tr\p{g_{· λ , μ}g^{λ ·  }(0) } · g(0)  \\
-&=g_{ν λ , μ}g^{λ ν  }(0)  · g(0)  \\
-\end{aligned}
-\end{equation}
 
 
 \section{Zweiter Versuch mit Talyor Entwicklung}
